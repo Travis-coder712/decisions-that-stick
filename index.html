@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Decisions That Stick — Alignment for Cross-Functional Teams</title>
+  <meta name="description" content="A diagnosis and five-framework toolkit for high-competence cross-functional teams that struggle to align on decisions. Built for renewable energy development teams, applies anywhere smart people are stuck." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='44' fill='%230f766e'/%3E%3Cpath d='M32 50 l12 12 l24-24' stroke='%23fff' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+  <style>
+    :root {
+      --bg:        #f8fafc;
+      --bg-2:      #ffffff;
+      --bg-3:      #f1f5f9;
+      --border:    #e2e8f0;
+      --border-2:  #cbd5e1;
+      --text:      #0f172a;
+      --text-2:    #334155;
+      --text-3:    #64748b;
+      --text-mute: #94a3b8;
+
+      --teal:      #0f766e;
+      --teal-2:    #0d9488;
+      --teal-soft: #f0fdfa;
+      --teal-border: #99f6e4;
+      --amber:     #b45309;
+      --amber-soft:#fffbeb;
+      --amber-border: #fde68a;
+      --slate:     #1e293b;
+      --emerald:   #059669;
+      --rose:      #e11d48;
+
+      --radius:    16px;
+      --radius-sm: 10px;
+      --shadow-1:  0 1px 2px rgba(15,23,42,0.04), 0 1px 3px rgba(15,23,42,0.05);
+      --shadow-2:  0 4px 16px rgba(15,23,42,0.06), 0 12px 32px rgba(15,23,42,0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 16px; line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Nav ──────────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      background: rgba(248,250,252,0.85);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 960px; margin: 0 auto; padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .brand {
+      font-weight: 800; letter-spacing: -0.02em;
+      display: flex; align-items: center; gap: 10px; font-size: 15px;
+      color: var(--text); text-decoration: none;
+    }
+    .brand-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--teal); display: flex; align-items: center; justify-content: center;
+    }
+    .brand-icon svg { width: 16px; height: 16px; color: white; }
+    .nav-links { display: flex; gap: 4px; }
+    .nav-link {
+      color: var(--text-3); text-decoration: none; font-size: 13px; font-weight: 500;
+      padding: 6px 12px; border-radius: var(--radius-sm);
+      transition: all 0.15s ease; border: none; background: none; cursor: pointer;
+    }
+    .nav-link:hover, .nav-link.active { color: var(--teal); background: var(--teal-soft); }
+    @media (max-width: 640px) { .nav-links { display: none; } }
+
+    /* ── Hero ─────────────────────────────── */
+    .hero { padding: 72px 0 56px; text-align: center; }
+    .eyebrow {
+      display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--teal);
+      background: var(--teal-soft); border: 1px solid var(--teal-border);
+      padding: 6px 14px; border-radius: 999px; margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: 'Instrument Serif', serif; font-weight: 400;
+      font-size: clamp(42px, 7vw, 80px); line-height: 0.98;
+      letter-spacing: -0.03em; margin-bottom: 24px; color: var(--slate);
+    }
+    .hero h1 em { font-style: italic; color: var(--teal); }
+    .hero .lede {
+      font-size: clamp(16px, 2vw, 19px); color: var(--text-2);
+      max-width: 620px; margin: 0 auto 32px; line-height: 1.55;
+    }
+    .hero-stats {
+      display: inline-flex; gap: 0; border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      background: var(--bg-2); margin-bottom: 48px;
+      box-shadow: var(--shadow-1);
+    }
+    .hero-stat {
+      padding: 14px 28px; text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat .n { font-size: 22px; font-weight: 700; color: var(--teal); letter-spacing: -0.02em; }
+    .hero-stat .l { font-size: 11px; color: var(--text-mute); text-transform: uppercase; letter-spacing: 0.07em; margin-top: 2px; }
+
+    /* ── Section nav tabs ─────────────────── */
+    .section-nav {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      padding: 0 0 32px; justify-content: center;
+    }
+    .snav-btn {
+      padding: 8px 16px; border-radius: var(--radius-sm);
+      font-size: 13px; font-weight: 600; cursor: pointer;
+      border: 1.5px solid var(--border); background: var(--bg-2);
+      color: var(--text-2); transition: all 0.15s ease;
+    }
+    .snav-btn:hover { border-color: var(--teal); color: var(--teal); }
+    .snav-btn.active {
+      background: var(--teal); border-color: var(--teal); color: white;
+    }
+
+    /* ── Content sections ─────────────────── */
+    .content-section { display: none; padding: 48px 0 80px; }
+    .content-section.active { display: block; }
+
+    section.content-wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Prose ────────────────────────────── */
+    .prose p { margin-bottom: 18px; color: var(--text-2); font-size: 16px; line-height: 1.7; }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose strong, .prose em { color: var(--text); }
+    .prose em { font-style: normal; font-weight: 600; }
+
+    .prose h2 {
+      font-family: 'Instrument Serif', serif; font-weight: 400;
+      font-size: clamp(26px, 3.5vw, 34px); line-height: 1.1;
+      letter-spacing: -0.02em; color: var(--slate);
+      margin: 44px 0 18px;
+    }
+    .prose h3 {
+      font-size: 18px; font-weight: 700; letter-spacing: -0.01em;
+      color: var(--text); margin: 32px 0 12px;
+    }
+
+    .prose ul, .prose ol {
+      margin: 0 0 20px 0; padding-left: 0; list-style: none;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .prose ul li, .prose ol li {
+      color: var(--text-2); font-size: 15px; line-height: 1.6;
+      padding-left: 20px; position: relative;
+    }
+    .prose ul li::before {
+      content: '–'; position: absolute; left: 0;
+      color: var(--teal); font-weight: 600;
+    }
+    .prose ol { counter-reset: ol-counter; }
+    .prose ol li { counter-increment: ol-counter; padding-left: 28px; }
+    .prose ol li::before {
+      content: counter(ol-counter) '.';
+      position: absolute; left: 0;
+      color: var(--teal); font-weight: 700; font-size: 13px;
+    }
+
+    /* ── Callout boxes ────────────────────── */
+    .callout {
+      margin: 28px 0; padding: 20px 22px;
+      border-radius: var(--radius-sm);
+      border-left: 4px solid var(--teal);
+      background: var(--teal-soft);
+    }
+    .callout-label {
+      font-size: 10px; font-weight: 800; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 8px;
+    }
+    .callout p { color: var(--text); font-size: 15px; margin: 0; line-height: 1.55; }
+
+    .callout.amber {
+      border-color: var(--amber); background: var(--amber-soft);
+    }
+    .callout.amber .callout-label { color: var(--amber); }
+
+    .aside {
+      margin: 24px 0; padding: 16px 18px;
+      background: var(--bg-3); border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 14px; color: var(--text-3); line-height: 1.55;
+    }
+    .aside strong { color: var(--text-2); }
+
+    /* ── Try it / AI prompt ───────────────── */
+    .try-it {
+      margin: 28px 0; border: 1.5px solid var(--teal-border);
+      border-radius: var(--radius); overflow: hidden;
+    }
+    .try-it-head {
+      background: var(--teal-soft); padding: 12px 18px;
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--teal);
+    }
+    .try-it-body { padding: 18px; background: var(--bg-2); }
+    .try-it-body p { margin-bottom: 14px; font-size: 15px; color: var(--text-2); }
+    .prompt-block {
+      background: var(--slate); color: #e2e8f0; border-radius: var(--radius-sm);
+      padding: 16px 18px; font-size: 13.5px; line-height: 1.6;
+      font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+      margin: 10px 0; position: relative;
+    }
+    .copy-prompt {
+      position: absolute; top: 10px; right: 10px;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.7); padding: 4px 10px; border-radius: 6px;
+      font-size: 11px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif;
+      transition: all 0.15s ease;
+    }
+    .copy-prompt:hover { background: rgba(255,255,255,0.2); color: white; }
+    .copy-prompt.copied { background: rgba(5,150,105,0.3); border-color: rgba(5,150,105,0.5); color: #6ee7b7; }
+
+    /* ── Framework cards on overview ─────── */
+    .framework-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 32px 0;
+    }
+    @media (max-width: 640px) { .framework-grid { grid-template-columns: 1fr; } }
+    .framework-card {
+      border: 1.5px solid var(--border); border-radius: var(--radius);
+      padding: 22px; background: var(--bg-2);
+      cursor: pointer; transition: all 0.2s ease; text-align: left;
+      position: relative; overflow: hidden;
+    }
+    .framework-card:hover {
+      border-color: var(--teal); transform: translateY(-2px);
+      box-shadow: var(--shadow-2);
+    }
+    .framework-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; background: var(--teal);
+    }
+    .fc-num { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal); margin-bottom: 6px; }
+    .fc-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .fc-desc { font-size: 13.5px; color: var(--text-3); line-height: 1.5; }
+    .fc-open { margin-top: 14px; font-size: 12px; font-weight: 600; color: var(--teal); }
+
+    /* ── Workshop timeline ────────────────── */
+    .timeline { margin: 24px 0; display: flex; flex-direction: column; gap: 0; }
+    .timeline-item {
+      display: flex; gap: 0; position: relative;
+    }
+    .timeline-left {
+      width: 80px; flex-shrink: 0; text-align: right;
+      padding: 14px 16px 14px 0;
+      font-size: 12px; font-weight: 700; color: var(--teal);
+      font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    }
+    .timeline-line {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 0 16px;
+    }
+    .timeline-dot {
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--teal); flex-shrink: 0; margin-top: 18px;
+    }
+    .timeline-line .vline {
+      width: 2px; flex: 1; background: var(--teal-border); margin-top: 4px;
+    }
+    .timeline-item:last-child .vline { display: none; }
+    .timeline-right {
+      flex: 1; padding: 12px 0 20px;
+    }
+    .tl-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .tl-desc { font-size: 14px; color: var(--text-2); line-height: 1.55; }
+
+    /* ── Deeper reading ───────────────────── */
+    .reading-list { margin: 24px 0; display: flex; flex-direction: column; gap: 10px; }
+    .reading-item {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 14px 16px; background: var(--bg-2);
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+    }
+    .reading-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+    .reading-title { font-size: 15px; font-weight: 600; color: var(--text); }
+    .reading-by { font-size: 13px; color: var(--text-3); }
+    .reading-note { font-size: 13px; color: var(--text-2); margin-top: 3px; line-height: 1.45; }
+
+    /* ── Footer ───────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 24px 60px; text-align: center;
+      color: var(--text-mute); font-size: 13px;
+    }
+    footer a { color: var(--teal); text-decoration: none; font-weight: 500; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── Print ────────────────────────────── */
+    @media print {
+      .nav, .section-nav, .hero-stats, footer { display: none; }
+      .content-section { display: block !important; }
+      .prose h2 { page-break-before: always; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#overview" onclick="showSection('overview')">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        Decisions That Stick
+      </a>
+      <nav class="nav-links" id="nav-links">
+        <button class="nav-link active" onclick="showSection('overview')">Overview</button>
+        <button class="nav-link" onclick="showSection('diagnosis')">Diagnosis</button>
+        <button class="nav-link" onclick="showSection('frameworks')">5 Frameworks</button>
+        <button class="nav-link" onclick="showSection('workshop')">Workshop</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── Hero ── -->
+  <div class="wrap">
+    <div class="hero">
+      <span class="eyebrow">Decision-making · Cross-functional teams</span>
+      <h1>Decisions that <em>stick</em>.</h1>
+      <p class="lede">
+        Why highly competent cross-functional teams get stuck on decisions with few real variables —
+        and five frameworks that get them moving again.
+      </p>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="n">1</div><div class="l">Diagnosis</div></div>
+        <div class="hero-stat"><div class="n">5</div><div class="l">Frameworks</div></div>
+        <div class="hero-stat"><div class="n">90 min</div><div class="l">Workshop pack</div></div>
+        <div class="hero-stat"><div class="n">~60 min</div><div class="l">Reading time</div></div>
+      </div>
+      <div class="section-nav">
+        <button class="snav-btn active" onclick="showSection('overview')">Overview</button>
+        <button class="snav-btn" onclick="showSection('diagnosis')">The diagnosis</button>
+        <button class="snav-btn" onclick="showSection('f1')">1 · Inquiry over Advocacy</button>
+        <button class="snav-btn" onclick="showSection('f2')">2 · Six Thinking Hats</button>
+        <button class="snav-btn" onclick="showSection('f3')">3 · Risk-First Alignment</button>
+        <button class="snav-btn" onclick="showSection('f4')">4 · RAPID Roles</button>
+        <button class="snav-btn" onclick="showSection('f5')">5 · Pre-Mortem</button>
+        <button class="snav-btn" onclick="showSection('workshop')">Workshop pack</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- OVERVIEW                                               -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="content-section active" id="section-overview">
+    <section class="content-wrap">
+      <div class="prose">
+        <p>
+          Here is the paradox: your team is made up of genuinely capable people. Everyone has
+          relevant expertise. The decision in front of you has, at most, a handful of realistic
+          options. And yet you keep finding yourselves in the same exhausting loop — another workshop,
+          another working group, another redraft of a paper that was almost agreed three months ago.
+        </p>
+        <p>
+          The instinct is to blame the complexity of the decision. More analysis. A bigger
+          consultation list. A clearer options paper. But in cross-functional teams — particularly
+          in renewable energy development — the complexity of the decision is almost never the problem.
+          The analysis is usually fine. The variables are genuinely few.
+        </p>
+
+        <div class="callout">
+          <div class="callout-label">The core diagnosis</div>
+          <p>The team does not have an <strong>analysis problem</strong>. It has an <strong>advocacy problem</strong> — everyone argues for their conclusion instead of inquiring into each other's reasoning. The fix is not more data. It is a different kind of conversation.</p>
+        </div>
+
+        <h2>Five frameworks that address the root cause</h2>
+        <p>
+          None of these frameworks require your team to become different people. They require
+          a different structure for the conversation — one that makes reasoning visible, surfaces
+          risk honestly, clarifies who decides, and makes it safe to surface doubts before they
+          become implementation problems.
+        </p>
+      </div>
+
+      <div class="framework-grid">
+        <div class="framework-card" onclick="showSection('f1')">
+          <div class="fc-num">Framework 1</div>
+          <div class="fc-title">Inquiry over Advocacy</div>
+          <div class="fc-desc">The Ladder of Inference: how to climb down from conclusions to the reasoning underneath, and find where you actually differ.</div>
+          <div class="fc-open">Read →</div>
+        </div>
+        <div class="framework-card" onclick="showSection('f2')">
+          <div class="fc-num">Framework 2</div>
+          <div class="fc-title">Six Thinking Hats</div>
+          <div class="fc-desc">Separate thinking modes so everyone — not just the technical lead — wears the risk hat together. Removes the "being difficult" stigma from raising concerns.</div>
+          <div class="fc-open">Read →</div>
+        </div>
+        <div class="framework-card" onclick="showSection('f3')">
+          <div class="fc-num">Framework 3</div>
+          <div class="fc-title">Risk-First Alignment</div>
+          <div class="fc-desc">Agree on the risk picture before evaluating options. Disagreements about options are almost always proxy disagreements about risk.</div>
+          <div class="fc-open">Read →</div>
+        </div>
+        <div class="framework-card" onclick="showSection('f4')">
+          <div class="fc-num">Framework 4</div>
+          <div class="fc-title">RAPID Decision Roles</div>
+          <div class="fc-desc">Who Recommends, Agrees, Performs, Inputs, Decides — one person per role, one decider. Eliminates the informal-veto paralysis.</div>
+          <div class="fc-open">Read →</div>
+        </div>
+        <div class="framework-card" onclick="showSection('f5')">
+          <div class="fc-num">Framework 5</div>
+          <div class="fc-title">Pre-Mortem &amp; Red Team</div>
+          <div class="fc-desc">Make it legitimate — required — to find the flaws before committing. Changes the social dynamic around criticism.</div>
+          <div class="fc-open">Read →</div>
+        </div>
+        <div class="framework-card" onclick="showSection('workshop')">
+          <div class="fc-num">Workshop Pack</div>
+          <div class="fc-title">Run it with your team</div>
+          <div class="fc-desc">A 90-minute facilitated session combining all five frameworks. Full agenda, facilitation notes for the difficult moments, and post-workshop commitments.</div>
+          <div class="fc-open">Read →</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- DIAGNOSIS                                              -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="content-section" id="section-diagnosis">
+    <section class="content-wrap">
+      <div class="prose">
+        <h2>Why smart teams get stuck</h2>
+
+        <p>
+          When a commercial lead and a development lead look at the same grid connection cost
+          estimate and reach opposite conclusions, it is not because one of them can't read a number.
+          It is because they are each running the same number through a completely different mental
+          model — shaped by different professional experiences, different loss aversions, different
+          accountabilities, and different definitions of "acceptable risk."
+        </p>
+        <p>
+          The conversation that follows is rarely an exchange of mental models. It is a competition
+          between conclusions. Each person advocates for their view. The other person waits for a
+          gap to re-advocate for theirs. Nobody is listening to <em>understand</em>. Everyone is
+          listening to <em>respond</em>.
+        </p>
+        <p>
+          The result is that the person with the most seniority, or the most persistence, or the
+          most political capital eventually "wins" — and everyone else either complies without
+          committing, or quietly waits for the decision to fail so they can say they told you so.
+          That is not alignment. That is capitulation, which looks like alignment until it matters.
+        </p>
+
+        <div class="callout">
+          <div class="callout-label">The core diagnosis</div>
+          <p>The team does not have an analysis problem. It has an <strong>advocacy problem</strong> — everyone argues for their conclusion instead of inquiring into each other's reasoning. The fix is not more data. It is a different kind of conversation.</p>
+        </div>
+
+        <h2>The five patterns that keep smart teams stuck</h2>
+
+        <ul>
+          <li><em>Silo expertise as identity.</em> Commercial people feel responsible for protecting the project's financial viability. Technical people feel responsible for protecting its delivery credibility. These are legitimate roles — but when they harden into identities, each person stops being able to hear a challenge to their area as anything other than a challenge to their professional competence.</li>
+          <li><em>Risk aversion without a shared risk language.</em> "That's too risky" is not a useful statement. Risky compared to what? Which risk — schedule, cost, regulatory, reputational? What probability? What magnitude? Without a shared vocabulary for risk, conversations about risk become conversations about whose fear is bigger.</li>
+          <li><em>The loudest voice wins.</em> In the absence of a clear decision process, discussions default to whoever is most senior, most confident, or most persistent. The quieter expert — who often has the most grounded view — learns that speaking up doesn't change outcomes, so they stop.</li>
+          <li><em>Solutions before diagnosis.</em> The team arrives at the meeting having already decided what the answer should be. The "discussion" is really a negotiation between pre-formed positions. Nobody has agreed on what the actual problem is, so the solutions are never grounded in the same soil.</li>
+          <li><em>The guidance paper as battleground.</em> When someone redrafts a decision paper from their own perspective, they are not being obstructive — they are expressing a genuine belief that their mental model wasn't captured. The paper keeps changing because the underlying mental models were never made explicit and reconciled.</li>
+        </ul>
+
+        <h2>What alignment actually requires</h2>
+
+        <p>Real alignment — where people are genuinely on board, not just compliant — requires three things that most project team processes skip:</p>
+
+        <ol>
+          <li><em>Each person's reasoning made visible</em>, not just their conclusion. "I think we should proceed" is a conclusion. "I think we should proceed because my main risk is the 18-month delay from an alternative, which I weight more heavily than the 15% cost increase" is reasoning. You can engage with reasoning. You can only argue with a conclusion.</li>
+          <li><em>Shared agreement on what "good enough" looks like before discussing options.</em> If you haven't agreed on success criteria, every option can be argued as better or worse depending on which criteria you emphasise.</li>
+          <li><em>A clear process for who decides and how.</em> Ambiguity about decision authority is gasoline on the fire of every other misalignment. When nobody knows who gets the final call, everyone fights for it.</li>
+        </ol>
+
+        <p>The five frameworks that follow address each of these directly.</p>
+
+        <div class="aside">
+          <strong>Note on timing:</strong> These frameworks work best when introduced before a specific decision is on the table — not in the middle of a contested one. If your team is already at war over a particular option, start with Framework 4 (RAPID Decision Roles) to establish process clarity first.
+        </div>
+
+        <h3>Why "more data" reliably makes things worse</h3>
+        <p>
+          The standard response to a stuck decision is to commission more analysis. This almost
+          always prolongs the deadlock rather than resolving it. More data gives each faction
+          more material to selectively cite in support of their pre-formed view. The disagreement
+          is about values and loss aversion, not facts — and you cannot resolve a values
+          disagreement with facts.
+        </p>
+
+        <h3>The renewable energy development context</h3>
+        <p>
+          Cross-functional misalignment in renewable energy development has a specific shape.
+          Long project timelines mean the cost of a delayed decision is enormous — but also
+          invisible in the short run. Grid connection sits at the exact intersection of commercial
+          and technical accountability: neither team fully controls the outcome, both teams feel
+          the risk, and it is the single most common flashpoint in development team decision-making.
+        </p>
+        <p>
+          The guidance paper trap is also sector-specific: development teams in this space have a
+          habit of resolving alignment issues by writing a more detailed guidance paper. This is
+          understandable — the sector rewards rigour — but it is almost always the wrong tool.
+          A guidance paper articulates the decision; it does not resolve the underlying disagreement
+          about values and priorities that is driving the conflict.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- FRAMEWORK 1 — Inquiry over Advocacy                    -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="content-section" id="section-f1">
+    <section class="content-wrap">
+      <div class="prose">
+        <div class="eyebrow" style="display:inline-block; margin-bottom:16px;">Framework 1</div>
+        <h2>Inquiry over Advocacy</h2>
+        <p>
+          The single highest-leverage change a team can make to its decision-making is to shift
+          the ratio of advocacy to inquiry. Most teams run almost entirely on advocacy — people
+          making the case for their view. Inquiry — genuinely trying to understand someone else's
+          reasoning — is treated as a courtesy at best, a weakness at worst.
+        </p>
+
+        <h3>The Ladder of Inference</h3>
+        <p>
+          The Ladder of Inference (developed by Chris Argyris, popularised by Peter Senge)
+          describes the mental journey every person takes — usually unconsciously, usually in
+          seconds — from raw data to action. Seven rungs:
+        </p>
+        <ol>
+          <li><em>Observable data</em> — the actual numbers, the document, the conversation that happened.</li>
+          <li><em>Selected data</em> — the subset of data I noticed and paid attention to.</li>
+          <li><em>Interpreted data</em> — what I think that data means, based on my past experience.</li>
+          <li><em>Assumptions</em> — the things I'm taking for granted that make my interpretation feel obvious.</li>
+          <li><em>Conclusions</em> — what I believe to be true.</li>
+          <li><em>Beliefs</em> — the principles that my conclusions reinforce.</li>
+          <li><em>Actions</em> — what I do as a result.</li>
+        </ol>
+        <p>
+          The problem: in most discussions, people share only the top of the ladder — their
+          conclusion. They don't share which data they paid attention to, how they interpreted it,
+          what they were assuming. The other person reaches a completely different conclusion from
+          the same data — because they selected different data, made different assumptions, and had
+          different past experience.
+        </p>
+        <p>
+          When you argue about conclusions, you are two people standing on the top rungs of
+          different ladders, shouting across a gap. When you inquire into reasoning, you climb
+          down to the rungs where the actual difference lives.
+        </p>
+
+        <div class="callout">
+          <div class="callout-label">The practical move</div>
+          <p>When you disagree with someone's conclusion, don't argue with it. Ask: <strong>"Can you walk me through how you got there?"</strong> Then actually listen to the answer. The real divergence is almost always at assumptions or interpretation — not at the conclusion.</p>
+        </div>
+
+        <h3>The inquiry questions that actually work</h3>
+        <ul>
+          <li><em>"What data are you drawing on here?"</em> — Gets below conclusions to the selected data layer. Often reveals that two people are looking at different datasets and both are right about their own slice.</li>
+          <li><em>"What would have to be true for a different conclusion to make sense?"</em> — Forces the speaker to articulate their assumptions explicitly. This is the single most powerful question in a deadlocked discussion.</li>
+          <li><em>"What's the risk you're most trying to protect against?"</em> — Surfaces the underlying loss aversion rather than letting it remain implicit in a conclusion.</li>
+          <li><em>"Help me understand the part I'm not seeing."</em> — An explicit acknowledgment that you may be missing something, which makes the other person more willing to explain rather than defend.</li>
+          <li><em>Expose your own ladder.</em> "I'm looking at the grid connection cost estimate and I'm focusing on the delay risk rather than the cost number. My assumption is that the 18-month timeline is the binding constraint here. Am I reading that the same way you are?" This is advocacy done transparently — it shows your reasoning, not just your conclusion.</li>
+        </ul>
+
+        <h3>The facilitation version</h3>
+        <p>Put the ladder on a whiteboard at the start of the meeting. When someone makes a statement, ask: "Which rung are you on — data, interpretation, or conclusion?" When two people disagree, invite each to articulate the rung below their conclusion. Track where the divergence actually sits. You will almost always find it before the conclusion rung.</p>
+
+        <div class="try-it">
+          <div class="try-it-head">🧪 Try it — preparation exercise</div>
+          <div class="try-it-body">
+            <p>Before your next contested decision meeting, take 10 minutes to do this privately:</p>
+            <div class="prompt-block">
+              Write down your conclusion about the decision. Then write down: What data am I selecting? What am I assuming? What would a reasonable person who reached the opposite conclusion have to believe? Where might their data or interpretation differ from mine?
+              <button class="copy-prompt" onclick="copyPrompt(this)">Copy</button>
+            </div>
+            <p>Bring the answers — not just the conclusion — to the meeting.</p>
+            <p>Or use AI to stress-test your position before the meeting:</p>
+            <div class="prompt-block">
+              I hold this position on a decision: [state your position]. I want you to expose my Ladder of Inference. What data might I be selecting and ignoring? What assumptions am I making that I haven't stated? What would someone who reached the opposite conclusion have to believe — and is their position reasonable?
+              <button class="copy-prompt" onclick="copyPrompt(this)">Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="aside">
+          <strong>The advocacy trap for experts:</strong> High-competence professionals are very good at making advocacy sound like reasoning. The tell is the direction — genuine reasoning goes data → conclusion. Post-hoc rationalisation goes conclusion → selected supporting data. One diagnostic: after a meeting where you advocated for a position, ask yourself whether you changed your mind at all based on anything the other people said. If the answer is consistently no, you are in advocacy mode.
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- FRAMEWORK 2 — Six Thinking Hats                        -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="content-section" id="section-f2">
+    <section class="content-wrap">
+      <div class="prose">
+        <div class="eyebrow" style="display:inline-block; margin-bottom:16px;">Framework 2</div>
+        <h2>Six Thinking Hats</h2>
+        <p>
+          One reason cross-functional teams get stuck is that everyone brings their role into
+          the room and keeps it on for the whole conversation. The commercial lead thinks
+          commercially. The technical lead thinks technically. Risk is implicitly allocated to
+          whoever has "risk" in their job title.
+        </p>
+        <p>
+          Edward de Bono's Six Thinking Hats method separates these jobs. It gives the team
+          one type of thinking to do at a time — and requires <em>everyone</em> to do the same
+          type of thinking at the same time. No more "commercial person brings the optimism,
+          technical person brings the caution." Everyone wears the same hat.
+        </p>
+
+        <h3>The six hats</h3>
+        <ul>
+          <li><em>White Hat — Facts and information.</em> What do we know? What data do we have? What is missing? No opinions, no interpretations — just what the evidence actually shows.</li>
+          <li><em>Red Hat — Feelings and intuition.</em> What is your gut reaction? No justification required or permitted. "I feel uneasy about this" is a complete and valid Red Hat statement. Legitimises the emotional signals that often carry real information but get suppressed in professional settings.</li>
+          <li><em>Black Hat — Caution and risk.</em> What could go wrong? What are the weaknesses? Where is the logic flawed? Not pessimism — structured critical thinking. The most valuable hat in renewable energy project decisions. Also the hat that, in unstructured meetings, gets associated with the person who is "being difficult."</li>
+          <li><em>Yellow Hat — Optimism and value.</em> What are the benefits? What is the best case? What value does this option create if it works? As rigorous as the Black Hat — not cheerleading, a systematic search for upside.</li>
+          <li><em>Green Hat — Creativity and alternatives.</em> What else could we do? What modifications might address the Black Hat concerns? Are there options we haven't considered? Generative, not evaluative.</li>
+          <li><em>Blue Hat — Process and facilitation.</em> What kind of thinking do we need right now? Where are we in the discussion? Worn by the facilitator, but any participant can put it on to redirect the conversation.</li>
+        </ul>
+
+        <div class="callout">
+          <div class="callout-label">The key insight</div>
+          <p>The Black Hat — caution and risk — is no longer the technical lead's job. <strong>Everyone puts on the Black Hat together.</strong> This removes the dynamic where "raising concerns" is seen as obstructing the commercial timeline, and "being optimistic" is seen as ignoring technical risk.</p>
+        </div>
+
+        <h3>Running a Six Hats session — sequence and timing</h3>
+        <ol>
+          <li><em>State the decision clearly.</em> Write it on the wall. "Should we proceed to FEED on the Stage 2 connection option, given the current cost estimate?" Not "discuss grid connection strategy."</li>
+          <li><em>White Hat — 10 minutes.</em> What do we actually know? What is the data? What is the gap? No opinions yet.</li>
+          <li><em>Red Hat — 3 minutes.</em> One round, 30 seconds per person. Gut reaction, no explanation.</li>
+          <li><em>Yellow Hat — 10 minutes.</em> Best case if this works. What value does it create?</li>
+          <li><em>Black Hat — 15 minutes.</em> Systematic critical analysis. What could go wrong? What are the weaknesses? This is the most important hat for a high-stakes project decision.</li>
+          <li><em>Green Hat — 10 minutes.</em> What modifications address the Black Hat concerns? What alternatives haven't we explored?</li>
+          <li><em>Blue Hat — synthesis.</em> Facilitator summarises. What did we learn? What are the remaining sticking points? What decision can we make now?</li>
+        </ol>
+
+        <div class="try-it">
+          <div class="try-it-head">🧪 Try it — virtual Six Hats with AI</div>
+          <div class="try-it-body">
+            <p>Use Claude or Copilot to pre-run a Six Hats analysis before your team session:</p>
+            <div class="prompt-block">
+              I need to make a decision: [describe your decision]. Please analyse it using the Six Thinking Hats method. For each hat, give me 3-5 specific points relevant to this decision. Be rigorous on the Black Hat — I want genuine critical analysis, not surface concerns.
+              <button class="copy-prompt" onclick="copyPrompt(this)">Copy</button>
+            </div>
+            <p>The AI output won't replace a team conversation, but it surfaces angles you may not have considered — and is useful preparation before a live session.</p>
+          </div>
+        </div>
+
+        <div class="aside">
+          <strong>Facilitator discipline:</strong> The most common failure is allowing the Black Hat discussion to drift into advocacy. Black Hat is analysis of risks — not argument for a position. If someone is using the Black Hat to argue for their preferred option, call it out: "That sounds like a conclusion — let's park it and come back to it in the decision phase."
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- FRAMEWORK 3 — Risk-First Alignment                     -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="content-section" id="section-f3">
+    <section class="content-wrap">
+      <div class="prose">
+        <div class="eyebrow" style="display:inline-block; margin-bottom:16px;">Framework 3</div>
+        <h2>Risk-First Alignment</h2>
+        <p>
+          Most project team meetings about difficult decisions jump straight to the options —
+          with each person evaluating them through the lens of the risks <em>they</em> are most
+          worried about, which may be entirely different from the risks the person next to them
+          is most worried about.
+        </p>
+        <p>
+          Risk-First Alignment flips the sequence. Before discussing options, you explicitly
+          agree — as a group — on what the risks are, how significant each one is, and how
+          much risk the team is collectively willing to accept. Only then do you evaluate options
+          against that shared risk picture.
+        </p>
+        <p>This sounds obvious. Almost no team does it. The effect is profound.</p>
+
+        <h3>Step 1 — Name all the risks, without evaluation</h3>
+        <p>Spend 10–15 minutes generating a complete list of risks. Every risk someone raises goes on the list, without debate. The rule: naming a risk is not advocating for a position. For a renewable energy project decision, the typical categories are:</p>
+        <ul>
+          <li>Cost (capital cost, development cost, connection cost)</li>
+          <li>Timeline (construction, connection, regulatory)</li>
+          <li>Technical delivery (engineering, equipment, site)</li>
+          <li>Revenue and offtake (price risk, curtailment, shape)</li>
+          <li>Regulatory and planning (approvals, policy change, community)</li>
+          <li>Reputational (with investors, community, regulators)</li>
+          <li>Opportunity cost (what we can't do if we commit here)</li>
+        </ul>
+
+        <h3>Step 2 — Rate each risk independently</h3>
+        <p>Each person rates every risk on two dimensions — <em>simultaneously and silently before any discussion</em>:</p>
+        <ul>
+          <li><em>Probability</em> — High / Medium / Low / Negligible</li>
+          <li><em>Impact if it occurs</em> — Critical / Significant / Manageable / Minor</li>
+        </ul>
+        <p>Sticky notes or a shared spreadsheet. The key: reveal all ratings simultaneously. When you see that the commercial lead rates "timeline risk" as Critical-High and the technical lead rates it as Significant-Medium, you have a real divergence that can be examined — not an implicit assumption that creates a phantom disagreement about options.</p>
+
+        <h3>Step 3 — Discuss the divergences, not the options</h3>
+        <p>Where two people rated the same risk differently, that divergence is the most important thing in the room. It means one of them is seeing something the other isn't. Use the inquiry questions from Framework 1: "What data are you drawing on? What would have to be true for your rating to shift?"</p>
+
+        <h3>Step 4 — Agree on risk appetite before evaluating options</h3>
+        <p>After aligning on the risk picture, explicitly agree: "For this decision, we are willing to accept up to X level of cost risk in exchange for Y reduction in timeline risk." This is the threshold against which you evaluate options.</p>
+
+        <div class="callout">
+          <div class="callout-label">Why this works</div>
+          <p>Disagreements about options are almost always <strong>proxy disagreements about risk</strong>. Resolve the risk disagreement first, and the option debate largely takes care of itself.</p>
+        </div>
+
+        <div class="try-it">
+          <div class="try-it-head">🧪 Try it — build a risk register with AI</div>
+          <div class="try-it-body">
+            <p>Before your next options discussion, generate a risk register to use in Step 1:</p>
+            <div class="prompt-block">
+              I'm about to make a decision about [describe decision]. Before we discuss options, I want to build a comprehensive risk register. Please list every risk that could be relevant, organised by category (cost, timeline, technical, regulatory, reputational, opportunity cost). For each risk, write a plain-language description that a non-specialist stakeholder could rate on a probability × impact grid.
+              <button class="copy-prompt" onclick="copyPrompt(this)">Copy</button>
+            </div>
+            <p>Edit the output as a group, then proceed through the rating exercise.</p>
+          </div>
+        </div>
+
+        <div class="aside">
+          <strong>The risk appetite conversation is harder than it looks.</strong> A commercial person saying "I am willing to accept a 20% cost overrun risk if it gets us to financial close 12 months sooner" is making a values statement. Making that statement openly is different from implicitly acting on it. Technique: ask each person to write their risk appetite statement privately before sharing — it forces honesty before the room dynamic kicks in.
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- FRAMEWORK 4 — RAPID Decision Roles                     -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="content-section" id="section-f4">
+    <section class="content-wrap">
+      <div class="prose">
+        <div class="eyebrow" style="display:inline-block; margin-bottom:16px;">Framework 4</div>
+        <h2>RAPID Decision Roles</h2>
+        <p>
+          A significant fraction of decision-making paralysis in cross-functional teams is not
+          about the content of the decision at all. It is about ambiguity over <em>who gets to
+          make it</em>. When that ambiguity exists, every stakeholder has an incentive to keep
+          the discussion alive — because a decision that hasn't been made yet can still be made
+          their way.
+        </p>
+        <p>RAPID (developed by Bain &amp; Company) assigns each person to exactly one role per decision:</p>
+
+        <ul>
+          <li><em>R — Recommend.</em> The person who leads the analysis and proposes what to do. Accountable for understanding the situation fully and developing a sound recommendation. Usually one person.</li>
+          <li><em>A — Agree.</em> People whose explicit agreement is required before the recommendation goes to the Decider. Formal veto holders — use sparingly. Typically legal, financial, or regulatory sign-off.</li>
+          <li><em>P — Perform.</em> The people who will implement the decision. Must be consulted — they know what's actually executable — but don't have veto power.</li>
+          <li><em>I — Input.</em> People whose views should be considered but who don't have veto power and don't implement. Subject matter experts. Most people in most meetings are actually Input roles — not Agree roles.</li>
+          <li><em>D — Decide.</em> The person with final authority. Exactly one person. They take input from all the above and make the call. Accountable for the outcome.</li>
+        </ul>
+
+        <div class="callout">
+          <div class="callout-label">The most common misconfiguration</div>
+          <p>Most dysfunctional team decisions have <strong>too many Agree roles and an unclear Decide role</strong>. Everyone thinks they have veto power. Nobody knows who has final authority. Fixing this alone resolves a significant fraction of decision-making paralysis.</p>
+        </div>
+
+        <h3>How to apply RAPID to a specific decision</h3>
+        <ol>
+          <li><em>Write the decision as a specific question.</em> "Do we proceed to FEED on the Stage 2 connection option?" — not "grid connection strategy."</li>
+          <li><em>Assign roles explicitly</em>, in a meeting with all relevant people present. "For this decision, [name] Recommends, [name] and [name] must Agree, [name] Decides. Everyone else is Input."</li>
+          <li><em>Agree on the process and timeline.</em> "The Recommender will present a recommendation by [date]. Agree roles have [timeframe] to signal agreement or raise objections. The Decider will decide by [date]."</li>
+          <li><em>Run the process.</em> Input people give their input in the Input channel — not by reopening the recommendation. Agree people either agree or raise a specific, bounded objection. The Decider decides.</li>
+          <li><em>Communicate the decision clearly</em>, including the reasoning and the risks explicitly accepted.</li>
+        </ol>
+
+        <h3>When RAPID feels uncomfortable</h3>
+        <p>
+          Some people will resist RAPID because being assigned "Input" when they previously
+          operated as an informal "Agree" feels like a demotion. This discomfort is diagnostic —
+          it surfaces the implicit power dynamics that were creating the deadlock.
+        </p>
+        <p>
+          Useful reframe: being an Input is not a lesser role. The quality of inputs often
+          determines the quality of the decision more than anything else. What RAPID removes is
+          veto power — which is different from influence. A well-argued input from a senior
+          technical expert will be heard. What they lose is the ability to block a decision
+          indefinitely.
+        </p>
+
+        <div class="try-it">
+          <div class="try-it-head">🧪 Try it — RAPID retrospective</div>
+          <div class="try-it-body">
+            <p>Map your last three contested decisions to RAPID roles retrospectively:</p>
+            <div class="prompt-block">
+              I'm analysing three recent decisions my team struggled to make. For each, I'll describe who was involved and what role they played. Please help me identify: Who was effectively acting as Recommender, Agree, and Decider? Where were the roles unclear or duplicated? What would the cleaner RAPID configuration have looked like?
+              <button class="copy-prompt" onclick="copyPrompt(this)">Copy</button>
+            </div>
+            <p>This retrospective usually identifies one or two recurring structural problems — often the same person operating as both Recommender and Agree, or multiple informal Agree holders with no clear Decider.</p>
+          </div>
+        </div>
+
+        <div class="aside">
+          <strong>Practical improvement — "Agree by silence" rule:</strong> If an Agree role does not raise an objection within [timeframe], their agreement is assumed. This prevents the Agree role from functioning as a passive veto by simply not responding.
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- FRAMEWORK 5 — Pre-Mortem & Red Team                    -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="content-section" id="section-f5">
+    <section class="content-wrap">
+      <div class="prose">
+        <div class="eyebrow" style="display:inline-block; margin-bottom:16px;">Framework 5</div>
+        <h2>Pre-Mortem &amp; Red Team</h2>
+        <p>
+          The five patterns that keep smart teams stuck share a common underlying driver:
+          <em>fear of being wrong in public</em>. When raising concerns is associated with
+          being obstructive, and being wrong is a career risk, people stop surfacing their
+          genuine doubts. They comply with decisions they don't believe in, then disengage
+          from implementation.
+        </p>
+        <p>
+          Pre-Mortem and Red Team make it not just acceptable but <em>required</em> to find
+          the flaws in a decision before it is made. They change the social dynamic around
+          criticism — from "being difficult" to "doing your job."
+        </p>
+
+        <h3>Pre-Mortem</h3>
+        <p>
+          A Pre-Mortem (developed by Gary Klein) works as follows: before a decision is
+          finalised, the team briefly imagines that it is 18 months in the future. The project
+          has gone ahead. It has failed — significantly, embarrassingly, expensively. The
+          question put to the room: <em>"What went wrong?"</em>
+        </p>
+        <p>
+          Each person writes down, independently, their list of the ways the decision could
+          have failed. Then shares. Then the group discusses.
+        </p>
+        <p>
+          The power of this framing: it gives everyone permission to voice the concern they
+          have been privately holding. "I've been worried about X" becomes "in my future
+          scenario, X happened and it cost us Y." The concern is no longer an objection to
+          the team's direction — it is a hypothetical in a thought experiment. Psychological
+          safety is higher; information content of the conversation is dramatically better.
+        </p>
+
+        <div class="callout">
+          <div class="callout-label">The unexpected benefit</div>
+          <p>Pre-Mortem surfaces risks that the Recommender hadn't thought of — not because the other people are cleverer, but because they are worried about <strong>different things</strong> and had not previously felt safe saying so. These are often the risks that actually kill projects.</p>
+        </div>
+
+        <h3>Running a Pre-Mortem — 30 minutes</h3>
+        <ol>
+          <li><em>Set the frame.</em> "We are 18 months from now. This project/decision went ahead. It has failed in a significant way. I want each of you to spend five minutes writing down every reason you can think of for why it failed."</li>
+          <li><em>Independent writing first.</em> No talking. Everyone writes. Critical — without it, the first person to speak anchors everyone else.</li>
+          <li><em>Round-robin sharing.</em> Each person shares one failure mode. Go around the room until all failure modes are on the board. No discussion yet — just capture.</li>
+          <li><em>Group and prioritise.</em> Which failure modes are most likely? Which would be most catastrophic?</li>
+          <li><em>Action the top three.</em> For each, ask: "What would we need to do now to prevent or mitigate this?" These become explicit risk mitigation actions in the decision — not afterthoughts.</li>
+        </ol>
+
+        <h3>Red Team</h3>
+        <p>
+          A Red Team (2–4 people) has the explicit mandate to attack a recommendation — to
+          find its weaknesses, challenge its assumptions, and make the strongest possible case
+          against it. Their job is to improve the recommendation by stress-testing it.
+        </p>
+        <p>For a renewable energy development decision, a Red Team might include:</p>
+        <ul>
+          <li>A senior technical person not involved in developing the recommendation</li>
+          <li>A commercial person from a different project who can bring outside perspective</li>
+          <li>Optionally, an external adviser with no stake in the outcome</li>
+        </ul>
+        <p>
+          The Red Team reviews the recommendation, conducts a structured challenge session with
+          the Recommender, and produces a short written summary of weaknesses identified and how
+          the Recommender responded. This goes to the Decider alongside the recommendation.
+        </p>
+
+        <div class="try-it">
+          <div class="try-it-head">🧪 Try it — AI as Red Team member</div>
+          <div class="try-it-body">
+            <p>Use a language model to run a pre-meeting Red Team analysis on your recommendation paper. The model has no stake in the outcome and will find logical gaps, unstated assumptions, and missing alternatives that a team member might miss after getting too close to the analysis.</p>
+            <div class="prompt-block">
+              I'm about to recommend [describe your recommendation] to a decision-making group. I want you to act as a Red Team reviewer. Your job is to challenge this recommendation as rigorously as possible. Find: (1) logical gaps in the reasoning, (2) unstated assumptions that might not hold, (3) risks that aren't adequately addressed, (4) alternatives that haven't been considered, (5) the strongest possible argument against proceeding. Do not be gentle.
+              <button class="copy-prompt" onclick="copyPrompt(this)">Copy</button>
+            </div>
+            <p>Review the output, address what you can, and explicitly note in your recommendation document which Red Team concerns you considered and how you responded to them.</p>
+          </div>
+        </div>
+
+        <div class="aside">
+          <strong>Pre-Mortem and Red Team work best as standard operating procedure</strong>, not emergency measures. If you only run a Pre-Mortem when someone raises the alarm, it will feel like an indictment of the process. If it is always part of the decision process, it is simply how good decisions get made.
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- WORKSHOP PACK                                          -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="content-section" id="section-workshop">
+    <section class="content-wrap">
+      <div class="prose">
+        <div class="eyebrow" style="display:inline-block; margin-bottom:16px;">Workshop Pack</div>
+        <h2>Run it with your team — 90 minutes</h2>
+        <p>
+          A facilitated session that brings all five frameworks together for a specific decision
+          your team is facing. Designed to be run by a facilitator who has read this module —
+          no external consultant required, though one can help if team dynamics are particularly
+          entrenched.
+        </p>
+
+        <h3>Before the workshop — three things to do this week</h3>
+        <ol>
+          <li><em>Choose a real decision.</em> Do not run this on a hypothetical. The workshop is most effective when there is a specific, contested decision on the table — one the team has already tried and failed to resolve in a standard meeting. The energy in the room will be genuine.</li>
+          <li><em>Assign RAPID roles before the session.</em> Send the role assignments to all participants before the workshop. Explain what each role means. Do not spring RAPID on people in the room — give them time to sit with their assignment first.</li>
+          <li><em>Ask each participant to prepare a Ladder of Inference reflection.</em> "Write down your current view on the decision, and for each position you hold, write down the data you are drawing on and the assumption that connects that data to your conclusion." This primes people for genuine inquiry rather than arriving ready to advocate.</li>
+        </ol>
+
+        <h3>The 90-minute agenda</h3>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-left">0–5 min</div>
+          <div class="timeline-line"><div class="timeline-dot"></div><div class="vline"></div></div>
+          <div class="timeline-right">
+            <div class="tl-title">Opening — purpose and process</div>
+            <div class="tl-desc">State the purpose: "We are here to make a better-informed decision on [specific question], using a structured process. Today is not about consensus — it is about making the best decision we can with the information we have." Briefly explain that you'll be using a structured approach and that the process may feel different from a normal meeting. That's intentional.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">5–15 min</div>
+          <div class="timeline-line"><div class="timeline-dot"></div><div class="vline"></div></div>
+          <div class="timeline-right">
+            <div class="tl-title">White Hat — what do we know?</div>
+            <div class="tl-desc">Facilitator leads a structured fact-gathering pass. What is established? What is our best estimate? What is genuinely unknown? Write everything on a shared surface. No opinions, no interpretations. Enforce this discipline gently: "Let's park that in the 'interpretation' column and come back to it."</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">15–40 min</div>
+          <div class="timeline-line"><div class="timeline-dot"></div><div class="vline"></div></div>
+          <div class="timeline-right">
+            <div class="tl-title">Risk-First Alignment</div>
+            <div class="tl-desc">
+              <strong>5 min:</strong> Generate the risk list (use the seven categories from Framework 3).<br><br>
+              <strong>5 min:</strong> Each person independently rates each risk (probability × impact). Silent, individual.<br><br>
+              <strong>15 min:</strong> Reveal ratings simultaneously. Focus discussion on divergences only. Use Ladder of Inference inquiry questions: "What data are you drawing on? What would have to shift for your rating to change?"
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">40–70 min</div>
+          <div class="timeline-line"><div class="timeline-dot"></div><div class="vline"></div></div>
+          <div class="timeline-right">
+            <div class="tl-title">Six Hats — evaluation</div>
+            <div class="tl-desc">
+              <strong>Yellow Hat — 8 min:</strong> What is the best case if we proceed?<br><br>
+              <strong>Black Hat — 12 min:</strong> Systematic critical analysis of each option. This is the core of the session — give it time.<br><br>
+              <strong>Green Hat — 10 min:</strong> What modifications or alternatives does the Black Hat analysis suggest?<br><br>
+              <em>Note: Red Hat can be done as a quick round-robin at any point if the facilitator senses unexpressed feelings in the room.</em>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">70–85 min</div>
+          <div class="timeline-line"><div class="timeline-dot"></div><div class="vline"></div></div>
+          <div class="timeline-right">
+            <div class="tl-title">Pre-Mortem</div>
+            <div class="tl-desc">
+              <strong>3 min:</strong> Independent writing — "The decision went ahead. 18 months later, it failed. What went wrong?"<br><br>
+              <strong>7 min:</strong> Round-robin capture. Everything goes on the board.<br><br>
+              <strong>5 min:</strong> Identify the top two or three failure modes. What mitigation actions do these suggest?
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">85–90 min</div>
+          <div class="timeline-line"><div class="timeline-dot"></div><div class="vline"></div></div>
+          <div class="timeline-right">
+            <div class="tl-title">Decision</div>
+            <div class="tl-desc">The Decider (identified in the RAPID roles) makes the call. They are not required to seek further consensus — they have had 85 minutes of structured, high-quality input. They state the decision, the main reasons, and the risk mitigation commitments.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose">
+        <div class="callout amber">
+          <div class="callout-label">If the Decider cannot decide in the room</div>
+          <p>That is legitimate — if genuinely new information emerged in the session. The Decider states what additional information they need and sets a decision date within 48 hours. What is not acceptable: returning to a general discussion without a decision date. The workshop must produce either a decision or a clear, bounded next step.</p>
+        </div>
+
+        <h3>After the workshop</h3>
+        <ul>
+          <li><em>Decision record within 24 hours.</em> One page: the decision made, the main factors that influenced it, the risks explicitly accepted, the risk mitigation actions committed to, and who owns each action.</li>
+          <li><em>Commitment declaration.</em> Ask each participant to confirm one thing in writing: "I will support this decision in implementation even if my preferred option was different." This is the moment where workshop alignment becomes real alignment.</li>
+          <li><em>Review at the next gate.</em> Revisit the decision record at the next project gate. Were the risks you identified the ones that materialised? This closes the learning loop.</li>
+        </ul>
+
+        <h3>Facilitator notes — the four difficult moments</h3>
+        <ul>
+          <li><em>Someone uses the Black Hat to advocate for their preferred option.</em> "That sounds like a conclusion — let's park it and come back to it in the decision phase. For now, I want us to focus on the risk analysis."</li>
+          <li><em>The most senior person dominates.</em> Use the RAPID role assignment: "As the Input role for this decision, your perspective is really valuable here — but the Recommender leads the analysis. [Name], what's your response to that point?"</li>
+          <li><em>The Pre-Mortem becomes a complaint session.</em> It often does, and that's fine for a round — people need to vent. After one round: "That's really useful context. What I want to focus on now is what specific failure modes we can actually mitigate."</li>
+          <li><em>The team wants to keep talking instead of deciding.</em> Name it directly: "We've been in discussion for [time]. The purpose of this session is to make a decision. [Decider's name], what do you need to make the call?"</li>
+        </ul>
+
+        <div class="try-it">
+          <div class="try-it-head">🧪 Generate a customised agenda with AI</div>
+          <div class="try-it-body">
+            <div class="prompt-block">
+              I'm facilitating a 90-minute decision workshop for a renewable energy development team. The decision is: [describe your specific decision]. The team includes [commercial lead, technical lead, planning manager, etc.]. The main points of contention have been [describe]. Please generate a customised workshop agenda using: Six Thinking Hats, Risk-First Alignment, the Ladder of Inference, and a Pre-Mortem. Suggest specific questions for each section tailored to this decision and these roles. Also suggest three potential facilitation challenges I should prepare for.
+              <button class="copy-prompt" onclick="copyPrompt(this)">Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <h3>Further reading</h3>
+      </div>
+
+      <div class="reading-list">
+        <div class="reading-item">
+          <div class="reading-icon">📚</div>
+          <div>
+            <div class="reading-title">The Fifth Discipline</div>
+            <div class="reading-by">Peter Senge</div>
+            <div class="reading-note">The Ladder of Inference and systems thinking applied to organisational learning. The foundational text behind Framework 1.</div>
+          </div>
+        </div>
+        <div class="reading-item">
+          <div class="reading-icon">📚</div>
+          <div>
+            <div class="reading-title">Six Thinking Hats</div>
+            <div class="reading-by">Edward de Bono</div>
+            <div class="reading-note">The original text. Short and practical. One afternoon.</div>
+          </div>
+        </div>
+        <div class="reading-item">
+          <div class="reading-icon">📚</div>
+          <div>
+            <div class="reading-title">Thinking, Fast and Slow</div>
+            <div class="reading-by">Daniel Kahneman</div>
+            <div class="reading-note">The cognitive underpinning of why smart people make bad decisions — and why expertise doesn't protect you from the biases that drive advocacy.</div>
+          </div>
+        </div>
+        <div class="reading-item">
+          <div class="reading-icon">📚</div>
+          <div>
+            <div class="reading-title">Decisive</div>
+            <div class="reading-by">Chip and Dan Heath</div>
+            <div class="reading-note">Practical, well-evidenced guide to better decision-making in teams. Pre-Mortem is covered here.</div>
+          </div>
+        </div>
+        <div class="reading-item">
+          <div class="reading-icon">📚</div>
+          <div>
+            <div class="reading-title">The Fearless Organisation</div>
+            <div class="reading-by">Amy Edmondson</div>
+            <div class="reading-note">Psychological safety — the prerequisite for all of the above to work. Without it, people will listen to the frameworks and still not say what they actually think.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <p>Part of <a href="https://travis-coder712.github.io/Studio/">Studio</a> · Travis Hughes</p>
+    <p style="margin-top:6px; font-size:11px; color: var(--text-mute)">© 2026 · Built end-to-end · last updated June 2026</p>
+  </footer>
+
+  <script>
+    // ── Section routing ──────────────────────────────────────
+    const SECTIONS = ['overview','diagnosis','f1','f2','f3','f4','f5','workshop'];
+
+    function showSection(id) {
+      SECTIONS.forEach(s => {
+        const el = document.getElementById('section-' + s);
+        if (el) el.classList.toggle('active', s === id);
+      });
+      // Update nav-link highlights
+      document.querySelectorAll('.nav-link').forEach(btn => {
+        btn.classList.toggle('active',
+          (btn.textContent === 'Overview' && id === 'overview') ||
+          (btn.textContent === 'Diagnosis' && id === 'diagnosis') ||
+          (btn.textContent === '5 Frameworks' && ['f1','f2','f3','f4','f5'].includes(id)) ||
+          (btn.textContent === 'Workshop' && id === 'workshop')
+        );
+      });
+      // Update snav-btn highlights
+      document.querySelectorAll('.snav-btn').forEach(btn => {
+        const onclick = btn.getAttribute('onclick') || '';
+        btn.classList.toggle('active', onclick.includes("'" + id + "'"));
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ── Copy prompt ──────────────────────────────────────────
+    function copyPrompt(btn) {
+      const block = btn.closest('.prompt-block');
+      const text = block.childNodes[0].textContent.trim();
+      const copy = navigator.clipboard
+        ? navigator.clipboard.writeText(text)
+        : Promise.resolve(legacyCopy(text));
+      copy.then(() => {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+      });
+    }
+
+    function legacyCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.top = '-1000px';
+      document.body.appendChild(ta); ta.focus(); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta);
+    }
+  </script>
+
+</body>
+</html>
