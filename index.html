@@ -253,6 +253,31 @@
     .fc-desc { font-size: 13.5px; color: var(--text-3); line-height: 1.5; }
     .fc-open { margin-top: 14px; font-size: 12px; font-weight: 600; color: var(--teal); }
 
+    /* ── Downloads ────────────────────────── */
+    .downloads-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0;
+    }
+    @media (max-width: 640px) { .downloads-grid { grid-template-columns: 1fr; } }
+    .download-card {
+      display: flex; flex-direction: column; gap: 10px;
+      border: 1.5px solid var(--teal-border); border-radius: var(--radius);
+      padding: 22px; background: var(--teal-soft);
+      text-decoration: none; transition: all 0.2s ease;
+    }
+    .download-card:hover {
+      border-color: var(--teal); transform: translateY(-2px); box-shadow: var(--shadow-2);
+      background: var(--bg-2);
+    }
+    .dl-icon { font-size: 28px; }
+    .dl-title { font-size: 16px; font-weight: 700; color: var(--text); }
+    .dl-ext {
+      font-size: 11px; font-weight: 700; color: var(--teal);
+      background: rgba(15,118,110,0.12); padding: 2px 8px; border-radius: 999px;
+      margin-left: 6px; vertical-align: middle;
+    }
+    .dl-desc { font-size: 13px; color: var(--text-3); line-height: 1.5; }
+    .dl-action { font-size: 13px; font-weight: 600; color: var(--teal); margin-top: 4px; }
+
     /* ── Workshop timeline ────────────────── */
     .timeline { margin: 24px 0; display: flex; flex-direction: column; gap: 0; }
     .timeline-item {
@@ -925,6 +950,28 @@
           entrenched.
         </p>
 
+      </div>
+
+      <div class="downloads-grid">
+        <a class="download-card" href="downloads/Decisions-That-Stick-Workshop.pptx" download>
+          <div class="dl-icon">📊</div>
+          <div class="dl-body">
+            <div class="dl-title">Workshop slide deck <span class="dl-ext">.pptx</span></div>
+            <div class="dl-desc">Room-facing slides for the live 90-minute session, plus an appendix on the background and further-learning resources (talks, books, podcasts) for each framework.</div>
+          </div>
+          <div class="dl-action">Download →</div>
+        </a>
+        <a class="download-card" href="downloads/Decisions-That-Stick-Facilitator-Guide.pdf" download>
+          <div class="dl-icon">📋</div>
+          <div class="dl-body">
+            <div class="dl-title">Facilitator guide <span class="dl-ext">.pdf</span></div>
+            <div class="dl-desc">The companion document for whoever is running the session — exact scripts, what to look out for, facilitator interventions, timing guardrails, extensions, and a post-workshop alignment checklist.</div>
+          </div>
+          <div class="dl-action">Download →</div>
+        </a>
+      </div>
+
+      <div class="prose">
         <h3>Before the workshop — three things to do this week</h3>
         <ol>
           <li><em>Choose a real decision.</em> Do not run this on a hypothetical. The workshop is most effective when there is a specific, contested decision on the table — one the team has already tried and failed to resolve in a standard meeting. The energy in the room will be genuine.</li>

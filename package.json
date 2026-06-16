@@ -1,0 +1,11 @@
+{
+  "name": "decisions-that-stick",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build:deck": "node scripts/build-workshop-deck.js"
+  },
+  "dependencies": {
+    "pptxgenjs": "^4.0.1"
+  }
+}
